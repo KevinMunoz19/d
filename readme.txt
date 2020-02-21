@@ -8,3 +8,22 @@ Bundle the App
 
 Run app
   npx react-native run-android
+
+
+Insert code into buil.gradle
+android{
+    defaultConfig {
+
+        // Enabling multidex support.
+        multiDexEnabled true
+    }
+
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+}
+dependencies {
+    //...
+    compile 'com.android.support:multidex:1.0.0'
+}
