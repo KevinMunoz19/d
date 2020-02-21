@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
 
 import React, {Fragment} from 'react';
 import {
@@ -16,7 +9,6 @@ import {
   StatusBar,
   Button
 } from 'react-native';
-
 import {
   Header,
   LearnMoreLinks,
@@ -24,8 +16,8 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
 import {Scene, Router} from 'react-native-router-flux';
+// import views
 import Login from './src/views/Login';
 import Home from './src/views/Home';
 import Client from './src/views/Client';
@@ -46,19 +38,14 @@ const App = () => {
   return (
     <Router>
     	<Scene key="root">
-      <Scene key="init" component={Init} hideNavBar={true} title="Inicio"/>
-
-
-
+        <Scene key="init" component={Init} hideNavBar={true} title="Inicio"/>
         <Scene key="welcome" component={Welcome} hideNavBar={true} title="Bienvenida"/>
         <Scene key="contractMessage" component={ContractMessage} hideNavBar={true} title="Contrato verificado"/>
-
         <Scene key="dte" component={Dte} hideNavBar={true} title="Dte"/>
         <Scene key="firstTimeForm" component={FirstTimeForm} hideNavBar={true} title="Formulario"/>
         <Scene key="contract" component={Contract} hideNavBar={true} title="Contrato"/>
         <Scene key="home"  component={Home} hideNavBar={true} title="Home"/>
         <Scene key="login" component={Login} hideNavBar={true} title="Login"/>
-
         <Scene key="clients" component={Clients} hideNavBar={true} title="Client List"/>
         <Scene key="client" component={Client} hideNavBar={true} title="Client"/>
         <Scene key="products" component={Products} hideNavBar={true} title="Product List"/>
