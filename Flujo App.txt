@@ -17,3 +17,6 @@ Si users.contact_name es igual a null, cambiar la propiedad setLogin a false
 Si users.confirm_contract es igual a null, invocar la accion contract
 En otro caso, invocar la accion home
 Si se presiona el boton "Comenzar", se invoca el onPress Handler, invocando la accion firstTimeForm
+
+
+Boton de pago con tarjeta se gener en archivo Dte.js

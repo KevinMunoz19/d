@@ -41,13 +41,13 @@ const Dte = () =>{
 	const [createClientModalVisible,setCreateClientModalVisible] = useState(false);
 	const [productModalVisible,setProductModalVisible] = useState(false);
 	const [createProductModalVisible,setCreateProductModalVisible] = useState(false);
-	const [pdfModalVisible,setPdfModalVisible] = useState(false); 
+	const [pdfModalVisible,setPdfModalVisible] = useState(false);
 	const [email,setEmail] = useState('');
 	const [nit,setNit] = useState(0);
 	const [name,setName] = useState('');
 	const [client,setClient] = useState({nit: '',name:'Seleccione un cliente'});
 	const [iva,setIva] = useState(12);
-	const [products,setProducts] = useState([]); 
+	const [products,setProducts] = useState([]);
 	const [total,setTotal] = useState(0);
 	const [subTotal,setSubTotal] = useState(0);
 	const {generateTotals,generateString} = useDte();
@@ -87,22 +87,22 @@ const Dte = () =>{
 	useEffect(()=>{
 		console.log('Cambio de user:', user);
 	},[user])
-	
+
 	const onClientSelect = (client)=>{
 		setTimeout(()=>{
 			setClientModalVisible(false);
 			setCreateClientModalVisible(false);
-		},500)	
-		setEmail(client.email);	
-		setNit(client.nit);	
+		},500)
+		setEmail(client.email);
+		setNit(client.nit);
 		setClient(client);
 	}
 
-	
+
 	const findClient = (nit)=>{
 		setNit(nit);
 		findByNit(nit,(result)=>{
-			if(result.length > 0){ 
+			if(result.length > 0){
 				setClient(result[0]);
 				setNit(result[0].nit);
 				setEmail(result[0].email);
@@ -112,7 +112,7 @@ const Dte = () =>{
 				setEmail('');
 				setIsNit(false);
 				setClient({name:'Nit no se encuentra en su lista de clientes'});
-			} 
+			}
 		})
 	}
 
@@ -121,9 +121,9 @@ const Dte = () =>{
 		setTimeout(()=>{
 			if(createProductModalVisible)setCreateProductModalVisible(false);
 			if(productModalVisible) setProductModalVisible(false);
-		},500)	
+		},500)
 		setProducts([...products,product]);
-	} 
+	}
 
 	const onProductRemove = (productToRemove)=>{
 		setProducts(products.filter(product=> (product.id != productToRemove.id && product.quantity != productToRemove.quantity)));
@@ -158,7 +158,7 @@ const Dte = () =>{
 							setLoading(false);
 							Alert.alert('Verifica los datos!', 'El iva debe ser 0 o 12%.');
 						}
-						
+
 					} else {
 						setLoading(false);
 						Alert.alert('Verifica los datos!', 'Si no es consumidor final el nit es requerido.');
@@ -171,7 +171,7 @@ const Dte = () =>{
 				setLoading(false);
 				Alert.alert('Verifica los datos!', 'El correo ingresado no tiene una forma valida.');
 			}
-		} 
+		}
 		else {
 			setLoading(false);
 			Alert.alert('Error obteniendo los datos de la sesion', 'Por favor, inicie sesion de nuevo.');
@@ -198,7 +198,7 @@ const Dte = () =>{
 								style={styles.icon}
 							/>
 						</TouchableOpacity>
-						
+
 						<Clients action='select' onSelect={onClientSelect}></Clients>
 						{/* <TouchableOpacity  onPress={()=>createClient(false)} style={styles.createModalButton}>
 							<Icon
@@ -229,10 +229,10 @@ const Dte = () =>{
                                 color="black"
 								size={50}
 								style={styles.icon}
-                            /> 
+                            />
 						</TouchableOpacity>
 
-						
+
 						<Products action='select' onSelect={onProductSelect}></Products>
 						{/* <TouchableOpacity  onPress={()=>createProduct()} style={styles.createModalButton}>
 							<Icon
@@ -266,10 +266,10 @@ const Dte = () =>{
 						<PdfView source={pdfSource}/>
 						{/* <Button title='Cerrar Modal' onPress={()=>setPdfModalVisible(false)}></Button> */}
 					</Modal>
-					<View style={{width:'100%',alignItems:'center'}}>		
+					<View style={{width:'100%',alignItems:'center'}}>
 						<SectionDivider width={'50%'} sectionName={'DATOS DEL CLIENTE'} />
 					</View>
-					
+
 					<View style={styles.contentContainer}>
 						<View style={styles.cfContainer}>
 							<RadioForm
@@ -293,8 +293,8 @@ const Dte = () =>{
 										/>
 								)}
 								{(!cf) && (
-									<TouchableOpacity 
-										onPress={()=>setClientModalVisible(true)} 
+									<TouchableOpacity
+										onPress={()=>setClientModalVisible(true)}
 										style={styles.clientListButton}
 									>
 										<Icon
@@ -307,11 +307,11 @@ const Dte = () =>{
 									</TouchableOpacity>
 								)}
 
-								
+
 							</View>
 						</View>
 						{/* <View > */}
-							
+
 							<View style={{width:'100%',height:'30%',marginTop:'5%', alignItems:'center'}}>
 								{/* Fila 3: email */}
 								<TextInput
@@ -323,13 +323,13 @@ const Dte = () =>{
 								/>
 							</View>
 						{/* </View> */}
-				
+
 
 					</View>
 					<View style={{width:'100%',alignItems:'center',marginBottom:10}}>
 						<SectionDivider width={'80%'} sectionName={'IVA 12 %'}/>
 					</View>
-					
+
 
 					{/* <View style={styles.ivaContainer}> */}
 							{/* <RadioForm
@@ -346,7 +346,7 @@ const Dte = () =>{
 							style={styles.inputBorder}
 							keyboardType = 'decimal-pad'
 						/> */}
-						{/* <Picker 
+						{/* <Picker
 							style={{width:'80%'}}
 							selectedValue={iva}
 							onValueChange={(value, i) =>
@@ -354,17 +354,17 @@ const Dte = () =>{
 							}
 						>
 							<Picker.item label='Excento' value={0}/>
-							<Picker.item label='12%' value={12}/>	
+							<Picker.item label='12%' value={12}/>
 						</Picker> */}
 					{/* </View> */}
 					<View style={{width:'100%',alignItems:'center'}}>
 						<SectionDivider width={'80%'} sectionName={'PRODUCTOS O SERVICIOS'}/>
 					</View>
-					
+
 					<View style={styles.contentContainer}>
-						<View style={{alignItems:'center'}}>							
-							<TouchableOpacity 
-								style={styles.addProductContainer} 
+						<View style={{alignItems:'center'}}>
+							<TouchableOpacity
+								style={styles.addProductContainer}
 								onPress={() => setProductModalVisible(true)}
 							>
 								<Text>Agregar producto</Text>
@@ -395,7 +395,7 @@ const Dte = () =>{
 						</View>
 					{/* <Button title='Buscar Productos' onPress={()=>setProductModalVisible(true)}></Button> */}
 					</View>
-					
+
 					{ (loading) && (
 						<ActivityIndicator visible={false} size='large' color='#26A657'/>
 					)}
@@ -410,6 +410,30 @@ const Dte = () =>{
 							<Text >Generar Factura</Text>
 						</TouchableOpacity>
 					</View>
+
+
+
+					<View style={styles.generateBillButtonContainer}>
+						<TouchableOpacity onPress={onGenerate} style={styles.actionButton}>
+							<Icon
+								name="add"
+								color="#26A657"
+								size={50}
+								style={styles.icon}
+							/>
+							<Text >Pago Con Tarjeta</Text>
+						</TouchableOpacity>
+					</View>
+
+
+
+
+
+
+
+
+
+
 				</View>
 			</ScrollView>
 		// </ImageBackground>
@@ -431,7 +455,7 @@ const styles = StyleSheet.create({
 	},
 	fontSize: {
 		fontSize: 10
-	},	
+	},
 	sectionHeader:{
 		flex: 1,
 		flexDirection:'row',
