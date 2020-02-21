@@ -18,21 +18,19 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import {Scene, Router} from 'react-native-router-flux';
 // import views
-import Login from './src/views/Login';
-import Home from './src/views/Home';
-import Client from './src/views/Client';
-import Clients from './src/views/Clients';
-import Products from './src/views/Products';
-import Product from './src/views/Product';
-import Dte from './src/views/Dte';
-import Dtes from './src/views/Dtes';
 import Init from './src/views/Init';
-import FirstTimeForm from './src/views/FirstTimeForm';
-import Contract from './src/views/Contract';
 import Welcome from './src/views/Welcome';
 import ContractMessage from './src/views/ContractMessage';
-
-
+import Dte from './src/views/Dte';
+import FirstTimeForm from './src/views/FirstTimeForm';
+import Contract from './src/views/Contract';
+import Home from './src/views/Home';
+import Login from './src/views/Login';
+import Clients from './src/views/Clients';
+import Client from './src/views/Client'
+import Products from './src/views/Products';
+import Product from './src/views/Product';
+import Dtes from './src/views/Dtes';
 
 const App = () => {
   return (

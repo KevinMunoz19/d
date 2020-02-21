@@ -42,7 +42,7 @@ const FirstTimeForm = () => {
         newData[key] = newValue;
         setFormData(newData);
     };
-    const submitForm = () => {        
+    const submitForm = () => {
         setLoading(true);
         const { contactName, id, nation, job, certificate, cellphone, logo} = formData;
         if(formData.email.trim().length > 0 ? validateEmail(formData.email) : false) {
@@ -118,7 +118,7 @@ const FirstTimeForm = () => {
             }else{
                 Alert.alert('Formato de certificado incorrecto');
             }
-            
+
           } catch (err) {
             if (DocumentPicker.isCancel(err)) {
               // User cancelled the picker, exit any dialogs or menus and move on
@@ -130,13 +130,13 @@ const FirstTimeForm = () => {
 
     return (
         <ScrollView style={styles.scrollContainer}>
-            
-             
+
+
             <View style={styles.container}>
                 <View style={styles.logoRow}>
                     <Image source={require('../img/logo.png')} style={styles.logo}/>
                 </View>
-                
+
                 <View style={styles.formContainer}>
                     <View style={[styles.formLabel]}>
                         {/* 1 columna, label de formulario  */}
@@ -149,7 +149,7 @@ const FirstTimeForm = () => {
                                 onChangeText={(e)=>{handleInputChange(e, 'contactName')}}
                                 value={formData.contactName}
                                 style={styles.input}
-                            />			
+                            />
                         </View>
                     </View>
                     <View style={styles.formRow}>
@@ -159,7 +159,7 @@ const FirstTimeForm = () => {
                                 onChangeText={(e)=>{handleInputChange(e, 'id')}}
                                 value={formData.id}
                                 style={styles.input}
-                            />			
+                            />
                         </View>
                         <View style={styles.inputHalfcontainer}>
                             <TextInput
@@ -167,17 +167,17 @@ const FirstTimeForm = () => {
                                 onChangeText={(e)=>{handleInputChange(e, 'cellphone')}}
                                 value={formData.cellphone}
                                 style={styles.input}
-                            />			
+                            />
                         </View>
                     </View>
-                    {/*<View style={styles.formRow}>
+                    <View style={styles.formRow}>
                         <View style={styles.inputHalfcontainer}>
                             <TextInput
                                 onFocus={findLogo}
                                 placeholder="Logo"
                                 value={formData.logoName}
                                 style={styles.input}
-                            />			
+                            />
                         </View>
                         <View style={styles.inputHalfcontainer}> }
                             <Text>Nombre</Text>
@@ -187,9 +187,9 @@ const FirstTimeForm = () => {
                                 // onChangeText={(e)=>{handleInputChange(e, 'certificate')}}
                                 value={formData.certificateName}
                                 style={styles.input}
-                             />	
+                             />
                         </View>
-                    </View> */}
+                    </View>
                     <View style={styles.formRow}>
                         <View style={styles.inputContainer}>
                             <TextInput
@@ -197,7 +197,7 @@ const FirstTimeForm = () => {
                                 onChangeText={(e)=>{handleInputChange(e, 'email')}}
                                 value={formData.email}
                                 style={styles.input}
-                            />			
+                            />
                         </View>
                     </View>
                     <View style={styles.formRow}>
@@ -207,8 +207,8 @@ const FirstTimeForm = () => {
                                 onChangeText={(e)=>{handleInputChange(e, 'job')}}
                                 value={formData.job}
                                 style={styles.input}
-                            />	
-                            {/* <Picker
+                            />
+                            <Picker
                                 selectedValue={formData.job}
                                 style={styles.selectInput}
                                 placeholder="Ocupacion"
@@ -222,7 +222,7 @@ const FirstTimeForm = () => {
                                 <Picker.Item label="Abogado" value="2" />
                                 <Picker.Item label="Licenciado" value="3" />
                                 <Picker.Item label="Doctor" value="4" />
-                            </Picker>			 */}
+                            </Picker>
                         </View>
                     </View>
                     <View style={styles.formRow}>
@@ -251,12 +251,12 @@ const FirstTimeForm = () => {
                                 <Picker.Item label="Peru" value="Peru" />
                                 <Picker.Item label="Paraguay" value="Paraguay" />
 
-                            </Picker>			
+                            </Picker>
                         </View>
                     </View>
                     <View style={styles.buttonRow}>
                     {loading &&(
-                        <ActivityIndicator visible={false} size='large' color='#26A657'  style={ {justifyContent: 'center'} }/>  
+                        <ActivityIndicator visible={false} size='large' color='#26A657'  style={ {justifyContent: 'center'} }/>
                     )}
                     {!loading && (
                         <TouchableOpacity onPress={submitForm} style={styles.sectionTouch}>
@@ -271,9 +271,9 @@ const FirstTimeForm = () => {
                     </View>
                 </View>
             </View>
-            
+
         </ScrollView>
-        
+
     );
 };
 
