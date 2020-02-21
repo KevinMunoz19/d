@@ -46,7 +46,7 @@ const FirstTimeForm = () => {
         setLoading(true);
         const { contactName, id, nation, job, certificate, cellphone, logo} = formData;
         if(formData.email.trim().length > 0 ? validateEmail(formData.email) : false) {
-            if(contactName && id && nation && job  && cellphone) { //&& logo && certificate comentado para iphone
+            if(contactName && id && nation && job && cellphone && logo && certificate) { //&& logo && certificate comentado para iphone
                 setUserInfo(formData);
                 setLoading(false);
                 Actions.contract();
@@ -128,153 +128,146 @@ const FirstTimeForm = () => {
           }
     }
 
-    return (
-        <ScrollView style={styles.scrollContainer}>
-
-
-            <View style={styles.container}>
-                <View style={styles.logoRow}>
-                    <Image source={require('../img/logo.png')} style={styles.logo}/>
-                </View>
-
-                <View style={styles.formContainer}>
-                    <View style={[styles.formLabel]}>
-                        {/* 1 columna, label de formulario  */}
-                        <Text style={{color: "#fff", fontSize: 20, padding: 3}}>Formulario</Text>
-                    </View>
-                    <View style={styles.formRow}>
-                        <View style={styles.inputContainer}>
-                            <TextInput
-                                placeholder="Nombre del contacto"
-                                onChangeText={(e)=>{handleInputChange(e, 'contactName')}}
-                                value={formData.contactName}
-                                style={styles.input}
-                            />
-                        </View>
-                    </View>
-                    <View style={styles.formRow}>
-                        <View style={styles.inputHalfcontainer}>
-                            <TextInput
-                                placeholder="Identificacion"
-                                onChangeText={(e)=>{handleInputChange(e, 'id')}}
-                                value={formData.id}
-                                style={styles.input}
-                            />
-                        </View>
-                        <View style={styles.inputHalfcontainer}>
-                            <TextInput
-                                placeholder="Celular"
-                                onChangeText={(e)=>{handleInputChange(e, 'cellphone')}}
-                                value={formData.cellphone}
-                                style={styles.input}
-                            />
-                        </View>
-                    </View>
-                    <View style={styles.formRow}>
-                        <View style={styles.inputHalfcontainer}>
-                            <TextInput
-                                onFocus={findLogo}
-                                placeholder="Logo"
-                                value={formData.logoName}
-                                style={styles.input}
-                            />
-                        </View>
-                        <View style={styles.inputHalfcontainer}> }
-                            <Text>Nombre</Text>
-                            <TextInput
-                                onFocus={findCertificate}
-                                placeholder="Certificado"
-                                // onChangeText={(e)=>{handleInputChange(e, 'certificate')}}
-                                value={formData.certificateName}
-                                style={styles.input}
-                             />
-                        </View>
-                    </View>
-                    <View style={styles.formRow}>
-                        <View style={styles.inputContainer}>
-                            <TextInput
-                                placeholder="Email"
-                                onChangeText={(e)=>{handleInputChange(e, 'email')}}
-                                value={formData.email}
-                                style={styles.input}
-                            />
-                        </View>
-                    </View>
-                    <View style={styles.formRow}>
-                        <View style={[styles.inputContainer, styles.input]}>
-                            <TextInput
-                                placeholder="Ocupacion"
-                                onChangeText={(e)=>{handleInputChange(e, 'job')}}
-                                value={formData.job}
-                                style={styles.input}
-                            />
-                            <Picker
-                                selectedValue={formData.job}
-                                style={styles.selectInput}
-                                placeholder="Ocupacion"
-                                onValueChange={(itemValue, itemIndex) =>
-                                    handleInputChange(itemValue, 'job')
-                                }
-                            >
-                                <Picker.Item label="Ocupacion" value={null} disabled={true} />
-                                <Picker.Item label="Ingeniero" value="0" />
-                                <Picker.Item label="Contador" value="1" />
-                                <Picker.Item label="Abogado" value="2" />
-                                <Picker.Item label="Licenciado" value="3" />
-                                <Picker.Item label="Doctor" value="4" />
-                            </Picker>
-                        </View>
-                    </View>
-                    <View style={styles.formRow}>
-                        <View style={[styles.inputContainer, styles.input]}>
-                            <Picker
-                                selectedValue={formData.nation}
-                                style={styles.selectInput}
-                                placeholder="Nacionalidad"
-                                onValueChange={(itemValue, itemIndex) =>
-                                    handleInputChange(itemValue, 'nation')
-                                }
-                            >
-                                <Picker.Item label="Nacionalidad" value={null} disabled={true} />
-                                <Picker.Item label="Guatemala" value="Guatemala" />
-                                <Picker.Item label="El Salvador" value="El Salvador" />
-                                <Picker.Item label="Honduras" value="Honduras" />
-                                <Picker.Item label="Nicaragua" value="Nicaragua" />
-                                <Picker.Item label="Costa Rica" value="Costa Rica" />
-                                <Picker.Item label="Panama" value="Panama" />
-                                <Picker.Item label="Colombia" value="Colombia" />
-                                <Picker.Item label="Mexico" value="Mexico" />
-                                <Picker.Item label="EEUU" value="EEUU" />
-                                <Picker.Item label="Ecuador" value="Ecuador" />
-                                <Picker.Item label="Chile" value="Chile" />
-                                <Picker.Item label="Argentina" value="Argentina" />
-                                <Picker.Item label="Peru" value="Peru" />
-                                <Picker.Item label="Paraguay" value="Paraguay" />
-
-                            </Picker>
-                        </View>
-                    </View>
-                    <View style={styles.buttonRow}>
-                    {loading &&(
-                        <ActivityIndicator visible={false} size='large' color='#26A657'  style={ {justifyContent: 'center'} }/>
-                    )}
-                    {!loading && (
-                        <TouchableOpacity onPress={submitForm} style={styles.sectionTouch}>
-                            <Icon
-                                name="done"
-                                color="#26A657"
-                                size={50}
-                                style={styles.icon}
-                            />
-                        </TouchableOpacity>
-                    )}
-                    </View>
-                </View>
+  return (
+  	<ScrollView style={styles.scrollContainer}>
+    	<View style={styles.container}>
+        <View style={styles.logoRow}>
+        	<Image source={require('../img/logo.png')} style={styles.logo}/>
+        </View>
+        <View style={styles.formContainer}>
+        	<View style={[styles.formLabel]}>
+            {/* 1 columna, label de formulario  */}
+            <Text style={{color: "#fff", fontSize: 20, padding: 3}}>Formulario</Text>
+          </View>
+          <View style={styles.formRow}>
+            <View style={styles.inputContainer}>
+            	<TextInput
+                placeholder="Nombre del contacto"
+                onChangeText={(e)=>{handleInputChange(e, 'contactName')}}
+                value={formData.contactName}
+                style={styles.input}
+              />
             </View>
-
-        </ScrollView>
-
-    );
+          </View>
+          <View style={styles.formRow}>
+            <View style={styles.inputHalfcontainer}>
+              <TextInput
+                placeholder="Identificacion"
+                onChangeText={(e)=>{handleInputChange(e, 'id')}}
+                value={formData.id}
+                style={styles.input}
+              />
+            </View>
+            <View style={styles.inputHalfcontainer}>
+            	<TextInput
+                placeholder="Celular"
+                onChangeText={(e)=>{handleInputChange(e, 'cellphone')}}
+                value={formData.cellphone}
+                style={styles.input}
+              />
+            </View>
+          </View>
+          <View style={styles.formRow}>
+            <View style={styles.inputHalfcontainer}>
+              <TextInput
+                onFocus={findLogo}
+                placeholder="Logo"
+                value={formData.logoName}
+                style={styles.input}
+              />
+            </View>
+            <View style={styles.inputHalfcontainer}>
+            	<TextInput
+                onFocus={findCertificate}
+                placeholder="Certificado"
+                onChangeText={(e)=>{handleInputChange(e, 'certificate')}}
+                value={formData.certificateName}
+                style={styles.input}
+              />
+            </View>
+          </View>
+          <View style={styles.formRow}>
+            <View style={styles.inputContainer}>
+              <TextInput
+                placeholder="Email"
+                onChangeText={(e)=>{handleInputChange(e, 'email')}}
+                value={formData.email}
+                style={styles.input}
+              />
+            </View>
+          </View>
+          <View style={styles.formRow}>
+            <View style={[styles.inputContainer, styles.input]}>
+              <TextInput
+                placeholder="Ocupacion"
+                onChangeText={(e)=>{handleInputChange(e, 'job')}}
+                value={formData.job}
+                style={styles.input}
+              />
+              {/*<Picker
+                selectedValue={formData.job}
+                style={styles.selectInput}
+                placeholder="Ocupacion"
+                onValueChange={(itemValue, itemIndex) =>
+                	handleInputChange(itemValue, 'job')
+                }
+              >
+                <Picker.Item label="Ocupacion" value={null} disabled={true} />
+                <Picker.Item label="Ingeniero" value="0" />
+                <Picker.Item label="Contador" value="1" />
+                <Picker.Item label="Abogado" value="2" />
+                <Picker.Item label="Licenciado" value="3" />
+                <Picker.Item label="Doctor" value="4" />
+              </Picker>*/}
+            </View>
+          </View>
+          <View style={styles.formRow}>
+            <View style={[styles.inputContainer, styles.input]}>
+              <Picker
+                selectedValue={formData.nation}
+                style={styles.selectInput}
+                placeholder="Nacionalidad"
+                onValueChange={(itemValue, itemIndex) =>
+                	handleInputChange(itemValue, 'nation')
+                }
+              >
+                <Picker.Item label="Nacionalidad" value={null} disabled={true} />
+                <Picker.Item label="Guatemala" value="Guatemala" />
+                <Picker.Item label="El Salvador" value="El Salvador" />
+                <Picker.Item label="Honduras" value="Honduras" />
+                <Picker.Item label="Nicaragua" value="Nicaragua" />
+                <Picker.Item label="Costa Rica" value="Costa Rica" />
+                <Picker.Item label="Panama" value="Panama" />
+                <Picker.Item label="Colombia" value="Colombia" />
+                <Picker.Item label="Mexico" value="Mexico" />
+                <Picker.Item label="EEUU" value="EEUU" />
+                <Picker.Item label="Ecuador" value="Ecuador" />
+                <Picker.Item label="Chile" value="Chile" />
+                <Picker.Item label="Argentina" value="Argentina" />
+                <Picker.Item label="Peru" value="Peru" />
+                <Picker.Item label="Paraguay" value="Paraguay" />
+              </Picker>
+            </View>
+          </View>
+          <View style={styles.buttonRow}>
+            {loading &&(
+              <ActivityIndicator visible={false} size='large' color='#26A657'  style={ {justifyContent: 'center'} }/>
+            )}
+            {!loading && (
+              <TouchableOpacity onPress={submitForm} style={styles.sectionTouch}>
+                <Icon
+                  name="done"
+                  color="#26A657"
+                  size={50}
+                  style={styles.icon}
+                />
+              </TouchableOpacity>
+            )}
+          </View>
+        </View>
+      </View>
+    </ScrollView>
+  );
 };
 
 const styles = StyleSheet.create({
