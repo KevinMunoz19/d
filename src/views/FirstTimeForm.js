@@ -96,7 +96,8 @@ const FirstTimeForm = () => {
     const findCertificate = async ()=>{
         try {
             const res = await DocumentPicker.pick({
-              type: [DocumentPicker.types.allFiles],
+              //type: [DocumentPicker.types.allFiles],
+							type: [DocumentPicker.types.images],
             });
             console.log('aca la respuesta completa->',res);
             console.log(
@@ -107,8 +108,11 @@ const FirstTimeForm = () => {
             );
             var extension = res.name.split(".");
             console.log(extension[extension.length-1]);
-            if(extension[extension.length-1].toLowerCase() == "p12".toLowerCase()
-                || extension[extension.length-1].toLowerCase() == "pfx".toLowerCase()){
+            if(extension[extension.length-1].toLowerCase() == "png".toLowerCase()){
+						//if(extension[extension.length-1].toLowerCase() == "p12".toLowerCase()
+                //|| extension[extension.length-1].toLowerCase() == "pfx".toLowerCase()
+								//|| extension[extension.length-1].toLowerCase() == "txt".toLowerCase()
+								//|| extension[extension.length-1].toLowerCase() == "png".toLowerCase()){
                     var copy = formData;
                     var newData = { ...copy };
                     newData.certificate = res.name;
