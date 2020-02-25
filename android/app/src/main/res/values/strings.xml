@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">digifactBeta</string>
+
+
+    <string name="venta">Venta</string>
+    <string name="anulacion">Anulacion</string>
+    <string name="cierre">Cierre</string>
+    <string name="reenviar">Reenviar</string>
+    <string name="imprimir">Imprimir</string>
+    <string name="hint">hint</string>
 </resources>

@@ -13,9 +13,15 @@ import {
 	TouchableOpacity,
 	ScrollView,
 	ImageBackground,
-    ActivityIndicator,
+  ActivityIndicator,
 	Alert,
-	ButtonGroup
+	ButtonGroup,
+	requireNativeComponent,
+
+
+	NativeModules,
+
+
 }	from 'react-native';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -33,6 +39,12 @@ import IosHeader from '../components/IosHeader';
 
 import SectionDivider from '../components/SectionDivider.component';
 import { validateEmail } from '../utils/emailValidator';
+
+
+
+
+const Swch = requireNativeComponent('Swch');
+
 
 
 const Dte = () =>{
@@ -183,6 +195,40 @@ const Dte = () =>{
 		setPdfModalVisible(false);
 		Actions.home();
 	}
+
+
+
+	//_showToast() {
+  //  ToastModule.showToast('This is a native toast!!');
+  //}
+
+	const _showToast = ()=> {
+    ToastModule.showToast('This is a native toast!!');
+  }
+
+
+	this.state = { isOn: false };
+
+
+
+
+	turnOn = () => {
+	  NativeModules.Bulb.turnOn();
+		console.log('AAAAAAAAA');
+	}
+	turnOff = () => {
+	  NativeModules.Bulb.turnOff();
+		console.log('bbbbbb');
+	}
+	updateStatus = () => {
+    NativeModules.Bulb.getStatus( (error, isOn)=>{
+      this.setState({
+        isOn: isOn
+			});
+  	}
+	)}
+
+
 
 	return(
 		// <ImageBackground source={require('../img/Fondo.png')} style={{width: '100%', height: '100%'}} >
@@ -414,7 +460,7 @@ const Dte = () =>{
 
 
 					<View style={styles.generateBillButtonContainer}>
-						<TouchableOpacity onPress={onGenerate} style={styles.actionButton}>
+						<TouchableOpacity onPress={this._showToast} style={styles.actionButton}>
 							<Icon
 								name="add"
 								color="#26A657"
@@ -425,6 +471,11 @@ const Dte = () =>{
 						</TouchableOpacity>
 					</View>
 
+
+
+					<View style={styles.container}>
+						<Swch style={styles.javaBtn} isTurnedOn={true} />
+					</View>
 
 
 
@@ -445,6 +496,14 @@ const styles = StyleSheet.create({
 		backgroundColor: '#fff',
 		flex: 1
 	},
+
+	javaBtn: {
+		height: 50,
+		width: 100,
+		backgroundColor: 'yellow'
+	},
+
+
 	createModalButton:{
 		flexDirection:'row',
 		justifyContent:'flex-end',
