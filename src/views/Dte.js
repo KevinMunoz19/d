@@ -16,6 +16,7 @@ import {
   ActivityIndicator,
 	Alert,
 	ButtonGroup,
+	Linking,
 	//requireNativeComponent,
 
 
@@ -23,6 +24,12 @@ import {
 
 
 }	from 'react-native';
+
+
+import AppLink from 'react-native-app-link';
+
+
+
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import Icon from "react-native-vector-icons/MaterialIcons";
 import {Actions} from 'react-native-router-flux';
@@ -427,7 +434,13 @@ const Dte = () =>{
 
 
 					<View style={styles.generateBillButtonContainer}>
-						<TouchableOpacity onPress={onGenerate} style={styles.actionButton}>
+						<TouchableOpacity
+						onPress={ () =>{
+
+							Linking.openURL('app://digifact')
+
+						}}
+							style={styles.actionButton}>
 							<Icon
 								name="add"
 								color="#26A657"

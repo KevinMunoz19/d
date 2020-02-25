@@ -9,9 +9,11 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.2",
+    "link": "^0.1.5",
     "react": "16.8.6",
     "react-burger-menu": "^2.6.11",
     "react-native": "0.60.5",
+    "react-native-app-link": "^1.0.0",
     "react-native-base64": "^0.0.2",
     "react-native-document-picker": "^3.2.4",
     "react-native-image-picker": "^1.1.0",
