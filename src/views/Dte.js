@@ -197,10 +197,6 @@ const Dte = () =>{
 	}
 
 
-
-
-
-
 	return(
 		// <ImageBackground source={require('../img/Fondo.png')} style={{width: '100%', height: '100%'}} >
 			<ScrollView style={{backgroundColor:'white'}}>
@@ -431,7 +427,7 @@ const Dte = () =>{
 
 
 					<View style={styles.generateBillButtonContainer}>
-						<TouchableOpacity onPress={this.onGenerate} style={styles.actionButton}>
+						<TouchableOpacity onPress={onGenerate} style={styles.actionButton}>
 							<Icon
 								name="add"
 								color="#26A657"
@@ -442,7 +438,7 @@ const Dte = () =>{
 						</TouchableOpacity>
 					</View>
 
-				</View>
+					</View>
 			</ScrollView>
 		// </ImageBackground>
 	);
