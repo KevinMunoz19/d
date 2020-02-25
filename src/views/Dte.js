@@ -16,10 +16,10 @@ import {
   ActivityIndicator,
 	Alert,
 	ButtonGroup,
-	requireNativeComponent,
+	//requireNativeComponent,
 
 
-	NativeModules,
+	//NativeModules,
 
 
 }	from 'react-native';
@@ -43,7 +43,7 @@ import { validateEmail } from '../utils/emailValidator';
 
 
 
-const Swch = requireNativeComponent('Swch');
+//const Swch = requireNativeComponent('Swch');
 
 
 
@@ -198,35 +198,6 @@ const Dte = () =>{
 
 
 
-	//_showToast() {
-  //  ToastModule.showToast('This is a native toast!!');
-  //}
-
-	const _showToast = ()=> {
-    ToastModule.showToast('This is a native toast!!');
-  }
-
-
-	this.state = { isOn: false };
-
-
-
-
-	turnOn = () => {
-	  NativeModules.Bulb.turnOn();
-		console.log('AAAAAAAAA');
-	}
-	turnOff = () => {
-	  NativeModules.Bulb.turnOff();
-		console.log('bbbbbb');
-	}
-	updateStatus = () => {
-    NativeModules.Bulb.getStatus( (error, isOn)=>{
-      this.setState({
-        isOn: isOn
-			});
-  	}
-	)}
 
 
 
@@ -460,7 +431,7 @@ const Dte = () =>{
 
 
 					<View style={styles.generateBillButtonContainer}>
-						<TouchableOpacity onPress={this._showToast} style={styles.actionButton}>
+						<TouchableOpacity onPress={this.onGenerate} style={styles.actionButton}>
 							<Icon
 								name="add"
 								color="#26A657"
@@ -470,20 +441,6 @@ const Dte = () =>{
 							<Text >Pago Con Tarjeta</Text>
 						</TouchableOpacity>
 					</View>
-
-
-
-					<View style={styles.container}>
-						<Swch style={styles.javaBtn} isTurnedOn={true} />
-					</View>
-
-
-
-
-
-
-
-
 
 				</View>
 			</ScrollView>

@@ -27,7 +27,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.List;
-
 import javax.annotation.Nonnull;
 
 
