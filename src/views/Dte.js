@@ -48,7 +48,7 @@ import useUser from '../utils/useUser';
 import useLastDte from '../utils/useLastDte';
 import useClientForm from '../utils/useClientForm';
 import IosHeader from '../components/IosHeader';
-//import DB from '../utils/DB';
+import DB from '../utils/DB';
 
 import SectionDivider from '../components/SectionDivider.component';
 import { validateEmail } from '../utils/emailValidator';
@@ -81,10 +81,10 @@ const Dte = () =>{
 	const [pdfSource,setPdfSource] = useState(null);
 	const [loading,setLoading] = useState(false);
 
-	//const {select} = DB();
+	const {select} = DB();
 
 	//const {getLastDte} = useLastDte();
-//	const [documento,setDocumento] = useState('');
+	const [documento,setDocumento] = useState([]);
 
 	//const [dteList,setDteList] = useState([]);
 
@@ -95,9 +95,6 @@ const Dte = () =>{
 		email: 'john@digifact',
 		plan: 'pro'
 	};
-
-
-
 	const userStr = JSON.stringify(userjson);
 
 
@@ -115,12 +112,12 @@ const Dte = () =>{
 
 
 
-	//useEffect(()=>{
-		//	var query = `select * from dte where id=(select max(id) from dte)`;
-			//select(query,[],(dtes)=>{
-				//	setDteList(dtes);
-			//})
-	//})
+	useEffect(()=>{
+			var query = `select * from dte where id=(select max(id) from dte)`;
+			select(query,[],(ldoc)=>{
+					setDocumento(ldoc);
+			})
+	})
 
 
 
@@ -505,8 +502,8 @@ const Dte = () =>{
 
 					<View>
 						<Button
-							onPress={onGenerate}
-            	//onPress={() => activityStarter.navigateToExample(JSON.stringify(dteList))}
+							//onPress={onGenerate}
+            	onPress={() => activityStarter.navigateToExample(JSON.stringify(documento))}
             	title='Start example activity'
           	/>
 					</View>
