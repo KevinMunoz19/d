@@ -10,7 +10,12 @@ import {
     Modal,
     Button,
     Alert,
-    ActivityIndicator
+    ActivityIndicator,
+		requireNativeComponent,
+
+
+		NativeModules,
+		NativeEventEmitter,
 }	from 'react-native';
 
 import {Actions} from 'react-native-router-flux';
@@ -19,6 +24,14 @@ import useApi from "../utils/useApi";
 import useDte from "../utils/useDte";
 import useUser from '../utils/useUser';
 import DteOptions from './DteOptions.component';
+
+
+
+const activityStarter = NativeModules.ActivityStarter;
+const eventEmitterModule = NativeModules.EventEmitter;
+
+
+
 const DteBox = ({dte,setPdfSource}) =>{
 
     const {getBill} = useApi();
@@ -28,14 +41,14 @@ const DteBox = ({dte,setPdfSource}) =>{
     const [loading,setLoading] = useState(false);
     const [user,setUser] = useState();
     const [optionModalVisible,setOptionModalVisible] = useState(false);
-    
+
 
     useEffect(()=>{
 		getUser((userInfo)=>{
 			setUser(userInfo);
 		})
     },[])
-    
+
     const onAction = ()=>{
         setOptionModalVisible(true);
         // setLoading(true);
@@ -63,17 +76,17 @@ const DteBox = ({dte,setPdfSource}) =>{
         // solicitar eliminar el documento
         setOptionModalVisible(false);
         setTimeout(()=>{
-            Alert.alert(  
-                'Alerta',  
-                'Esta seguro de anular esta factura ?',  
-                [  
-                    {  
-                        text: 'Cancelar',  
+            Alert.alert(
+                'Alerta',
+                'Esta seguro de anular esta factura ?',
+                [
+                    {
+                        text: 'Cancelar',
                         onPress: () => {
-    
-                        },  
-                        style: 'cancel',  
-                    },  
+
+                        },
+                        style: 'cancel',
+                    },
                     {text: 'De Acuerdo', onPress: () => {
                         setLoading(true);
                         cancelDte(user,dte,()=>{
@@ -83,21 +96,25 @@ const DteBox = ({dte,setPdfSource}) =>{
                             Alert.alert(err);
                             setLoading(false);
                         })
-                    }},  
-                ]  
-            ); 
+                    }},
+                ]
+            );
         },200)
-        
-        
+
+
     }
     const onResendDte = ()=>{
 
     }
 
+		//const onImprimirDte = () => {
+			//activityStarter.navigateToExample("Hello")
+		//}
+
     const onCloseModal = ()=>{
         setOptionModalVisible(false);
     }
-    
+
 	return(
 		<View style={styles.productBox}>
             {optionModalVisible &&
@@ -108,9 +125,13 @@ const DteBox = ({dte,setPdfSource}) =>{
                     onResendDte = {onResendDte}
                     onCloseModal = {onCloseModal}
                     dteStatus = {dte.status}
+
+
+
+										//onImprimirDte = {onImprimirDte}
                 />
             }
-            <View style={styles.valuesColumn}>                
+            <View style={styles.valuesColumn}>
                 <Text style={styles.valuesText}>{dte.receiver_name}</Text>
                 <View style={styles.detailsContainer}>
                     <Text style={styles.valuesText}># {dte.date}</Text>
@@ -129,7 +150,7 @@ const DteBox = ({dte,setPdfSource}) =>{
                 {(loading)&&(
                     <ActivityIndicator visible={false} size='large' color='#26A657'/>
                 )}
-            </TouchableOpacity>            
+            </TouchableOpacity>
         </View>
 	);
 

@@ -21,6 +21,7 @@ import {
 	requireNativeComponent,
 
 
+
 	NativeModules,
 	NativeEventEmitter,
 
@@ -44,8 +45,10 @@ import PdfView from '../components/PdfView';
 import useDte from '../utils/useDte';
 import useApi from '../utils/useApi';
 import useUser from '../utils/useUser';
+import useLastDte from '../utils/useLastDte';
 import useClientForm from '../utils/useClientForm';
 import IosHeader from '../components/IosHeader';
+//import DB from '../utils/DB';
 
 import SectionDivider from '../components/SectionDivider.component';
 import { validateEmail } from '../utils/emailValidator';
@@ -78,6 +81,12 @@ const Dte = () =>{
 	const [pdfSource,setPdfSource] = useState(null);
 	const [loading,setLoading] = useState(false);
 
+	//const {select} = DB();
+
+	//const {getLastDte} = useLastDte();
+//	const [documento,setDocumento] = useState('');
+
+	//const [dteList,setDteList] = useState([]);
 
 	const {getBill} = useApi();
 
@@ -103,6 +112,15 @@ const Dte = () =>{
 		{label:'12%  ',value:12},
 		{label:'Exento',value:0}
 	]
+
+
+
+	//useEffect(()=>{
+		//	var query = `select * from dte where id=(select max(id) from dte)`;
+			//select(query,[],(dtes)=>{
+				//	setDteList(dtes);
+			//})
+	//})
 
 
 
@@ -196,10 +214,11 @@ const Dte = () =>{
 								Alert.alert(`Ocurrio un error generando el documento, por favor intete luego`);
 							});
 
+
 						}else{
 							setLoading(false);
 							Alert.alert('Verifica los datos!', 'El iva debe ser 0 o 12%.');
-							var newstr = 'Bye';
+
 						}
 
 					} else {
@@ -486,8 +505,8 @@ const Dte = () =>{
 
 					<View>
 						<Button
-							//onPress={onGenerate}
-            	onPress={() => activityStarter.navigateToExample(newstr)}
+							onPress={onGenerate}
+            	//onPress={() => activityStarter.navigateToExample(JSON.stringify(dteList))}
             	title='Start example activity'
           	/>
 					</View>

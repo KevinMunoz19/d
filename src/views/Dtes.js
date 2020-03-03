@@ -20,11 +20,14 @@ import IosHeader from '../components/IosHeader';
 
 const Dtes = () =>{
 
-    const [pdfModalVisible,setPdfModalVisible] = useState(false); 
+    const [pdfModalVisible,setPdfModalVisible] = useState(false);
     const [pdfSource,setPdfSource] = useState(null);
     const [dteList,setDteList] = useState([]);
     const [loading,setLoading] = useState(false);
     const {select} = DB();
+
+
+		const [dteListLast,setDteListLast] = useState([]);
 
     useEffect(()=>{
         var query = `select * from dte`;
@@ -39,11 +42,11 @@ const Dtes = () =>{
 			setPdfModalVisible(true);
 		}
     },[pdfSource]);
-    
+
     const onClosePdf = ()=>{
 		setPdfModalVisible(false);
 	}
-    
+
 
 	return(
         <View style={styles.container}>
@@ -76,7 +79,7 @@ const Dtes = () =>{
                         })
                         }
                         </View>
-                        
+
                     )}
                     {(dteList.length==0 &&
                         <View style={styles.textContainer}>
@@ -88,15 +91,15 @@ const Dtes = () =>{
         </View>
         // <ImageBackground source={require('../img/Fondo.png')} style={{width: '100%', height: '100%'}} >
         //     <ScrollView>
-                
-        //         <View style={styles.container}>  
+
+        //         <View style={styles.container}>
         //             {
         //                 dteList.map((dte,i)=>{
         //                     return(
         //                         <DteBox key={i} dte={dte} setPdfSource={setPdfSource}/>
         //                     )
         //                 })
-        //             }            
+        //             }
         //         </View>
         //     </ScrollView>
         // </ImageBackground>
@@ -112,7 +115,7 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         backgroundColor:'white'
-        
+
     },
     textHeader:{
         color:'white',
