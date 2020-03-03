@@ -41,7 +41,7 @@ const useDte = (props) => {
     }
     const generateString = (products,client,cf,iva,email,user,res,rej)=>{
         var {itemsString,totalAmount,totalTaxAmount } = generateItemString(products,client,cf,iva);
-            
+
         var issueComercialName="TEST";
         var issueName=user.name;
         var issueNit=user.string_nit.replace(/0+(?!$)/,'');
@@ -66,30 +66,30 @@ const useDte = (props) => {
         }
 
         if(iva > 0 ){
-            var taxShortName = 'IVA'; 
+            var taxShortName = 'IVA';
         }else{
             var taxShortName = 'CERO';
         }
-        var xmlString = 
+        var xmlString =
         `
         <?xml version='1.0' encoding='UTF-8'?>
         <dte:GTDocumento xmlns:dte="http://www.sat.gob.gt/dte/fel/0.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="0.4">
             <dte:SAT ClaseDocumento="dte">
                 <dte:DTE ID="DatosCertificados">
-                    <dte:DatosEmision ID="DatosEmision">               
-                        <dte:DatosGenerales CodigoMoneda="GTQ" FechaHoraEmision="${new Date().toISOString()}" Tipo="FACT"/>                               
-                        <dte:Emisor AfiliacionIVA="GEN" 
-                            NombreComercial="${issueComercialName}" 
-                            CodigoEstablecimiento="1" 
-                            NombreEmisor="${issueName}" 
-                            NITEmisor="${issueNit}">                                       
-                            <dte:DireccionEmisor>                        
-                                <dte:Direccion>${issueAddress}</dte:Direccion>                       
-                                <dte:CodigoPostal>${issueZipCode}</dte:CodigoPostal>                        
-                                <dte:Municipio>${issueMunicipality}</dte:Municipio>                        
-                                <dte:Departamento>${issueDepartment}</dte:Departamento>                        
-                                <dte:Pais>GT</dte:Pais>                        
-                            </dte:DireccionEmisor>                    
+                    <dte:DatosEmision ID="DatosEmision">
+                        <dte:DatosGenerales CodigoMoneda="GTQ" FechaHoraEmision="${new Date().toISOString()}" Tipo="FACT"/>
+                        <dte:Emisor AfiliacionIVA="GEN"
+                            NombreComercial="${issueComercialName}"
+                            CodigoEstablecimiento="1"
+                            NombreEmisor="${issueName}"
+                            NITEmisor="${issueNit}">
+                            <dte:DireccionEmisor>
+                                <dte:Direccion>${issueAddress}</dte:Direccion>
+                                <dte:CodigoPostal>${issueZipCode}</dte:CodigoPostal>
+                                <dte:Municipio>${issueMunicipality}</dte:Municipio>
+                                <dte:Departamento>${issueDepartment}</dte:Departamento>
+                                <dte:Pais>GT</dte:Pais>
+                            </dte:DireccionEmisor>
                         </dte:Emisor>
                         <dte:Receptor CorreoReceptor="${email}"
                             NombreReceptor="${receiverName}" IDReceptor="${receiverNit}">
@@ -115,7 +115,7 @@ const useDte = (props) => {
                         </dte:Totales>
                     </dte:DatosEmision>
                 </dte:DTE>
-            </dte:SAT>       
+            </dte:SAT>
         </dte:GTDocumento>
         `;
         console.log(xmlString);
@@ -126,7 +126,7 @@ const useDte = (props) => {
         },(err)=>{
             rej(err);
         })
-       
+
     }
 
     const saveDte = (encode,receiverName,receiverNit)=>{
@@ -142,10 +142,9 @@ const useDte = (props) => {
         insert(query,[receiverName,receiverNit,total,serie,dteNumber,authNumber],(result)=>{
             console.log('DTE registrado con exito');
         },(err)=>{
-            console.log('ocurrion un error registrando el dte', err);
+            console.log('ocurrio un error registrando el dte', err);
         })
         console.log('otros' ,authNumber,dteNumber,serie);
-        
     }
 
     const generateItemString = (products,client,cf,iva)=>{
@@ -154,7 +153,7 @@ const useDte = (props) => {
 	    var totalTaxAmount = 0;
         var itemsString = ``;
         if(iva > 0 ){
-            var taxShortName = 'IVA'; 
+            var taxShortName = 'IVA';
             var taxCodeNumber = 1;
         }else{
             var taxShortName = 'CERO';
@@ -196,7 +195,7 @@ const useDte = (props) => {
         return {
             itemsString,
             totalAmount,
-            totalTaxAmount 
+            totalTaxAmount
         }
     }
 

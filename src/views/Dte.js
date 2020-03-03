@@ -17,10 +17,12 @@ import {
 	Alert,
 	ButtonGroup,
 	Linking,
-	//requireNativeComponent,
+
+	requireNativeComponent,
 
 
-	//NativeModules,
+	NativeModules,
+	NativeEventEmitter,
 
 
 }	from 'react-native';
@@ -40,6 +42,7 @@ import Product from './Product';
 import ProductBox from '../components/ProductBox';
 import PdfView from '../components/PdfView';
 import useDte from '../utils/useDte';
+import useApi from '../utils/useApi';
 import useUser from '../utils/useUser';
 import useClientForm from '../utils/useClientForm';
 import IosHeader from '../components/IosHeader';
@@ -48,11 +51,9 @@ import SectionDivider from '../components/SectionDivider.component';
 import { validateEmail } from '../utils/emailValidator';
 
 
-
-
-//const Swch = requireNativeComponent('Swch');
-
-
+const Sw = requireNativeComponent('Sw');
+const activityStarter = NativeModules.ActivityStarter;
+const eventEmitterModule = NativeModules.EventEmitter;
 
 const Dte = () =>{
 	const [cf,setCf] = useState(false);
@@ -77,6 +78,22 @@ const Dte = () =>{
 	const [pdfSource,setPdfSource] = useState(null);
 	const [loading,setLoading] = useState(false);
 
+
+	const {getBill} = useApi();
+
+	const userjson = {
+		name: 'John',
+		email: 'john@digifact',
+		plan: 'pro'
+	};
+
+
+
+	const userStr = JSON.stringify(userjson);
+
+
+
+
 	const radioProps = [
 		{label: 'Nit  ', value: false },
 		{label: 'Consumidor Final	', value: true }
@@ -86,6 +103,11 @@ const Dte = () =>{
 		{label:'12%  ',value:12},
 		{label:'Exento',value:0}
 	]
+
+
+
+
+
 	useEffect(()=>{
 		generateTotals(products,iva,setTotal,setSubTotal)
 	},[products,iva])
@@ -173,9 +195,11 @@ const Dte = () =>{
 								setLoading(false);
 								Alert.alert(`Ocurrio un error generando el documento, por favor intete luego`);
 							});
+
 						}else{
 							setLoading(false);
 							Alert.alert('Verifica los datos!', 'El iva debe ser 0 o 12%.');
+							var newstr = 'Bye';
 						}
 
 					} else {
@@ -200,8 +224,11 @@ const Dte = () =>{
 
 	const onClosePdf = ()=>{
 		setPdfModalVisible(false);
-		Actions.home();
+
+		//Actions.home();
 	}
+
+
 
 
 	return(
@@ -436,8 +463,9 @@ const Dte = () =>{
 					<View style={styles.generateBillButtonContainer}>
 						<TouchableOpacity
 						onPress={ () =>{
-
+							//onGenerate
 							Linking.openURL('app://digifact')
+							//Linking.sendIntent('text':"hello world")
 
 						}}
 							style={styles.actionButton}>
@@ -451,7 +479,20 @@ const Dte = () =>{
 						</TouchableOpacity>
 					</View>
 
+
+					<View>
+						<Sw style = {styles.javaBtn} isTurnedOn={true} />
 					</View>
+
+					<View>
+						<Button
+							//onPress={onGenerate}
+            	onPress={() => activityStarter.navigateToExample(newstr)}
+            	title='Start example activity'
+          	/>
+					</View>
+
+				</View>
 			</ScrollView>
 		// </ImageBackground>
 	);

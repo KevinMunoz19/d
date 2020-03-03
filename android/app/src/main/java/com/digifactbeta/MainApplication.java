@@ -5,6 +5,7 @@ import android.app.Application;
 import org.pgsqlite.SQLitePluginPackage;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.modules.intent.IntentModule;
@@ -28,7 +29,8 @@ public class MainApplication extends Application implements ReactApplication {
 
 
       //return Arrays.asList(
-      //        new MainReactPackage(),
+              //new MainReactPackage()
+            //new RNSendIntentPackage(),
       //        new MyModulePackage()
 
       //);
@@ -38,6 +40,9 @@ public class MainApplication extends Application implements ReactApplication {
       // packages.add(new MyReactNativePackage());
       //packages.add(new SwchPackage());
       //packages.add(new Main3Activity());
+      packages.add(new SwPackage());
+      packages.add(new ActivityStarterReactPackage());
+
       return packages;
     }
 
