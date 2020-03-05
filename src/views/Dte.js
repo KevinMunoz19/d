@@ -90,12 +90,6 @@ const Dte = () =>{
 
 	const {getBill} = useApi();
 
-	const userjson = {
-		name: 'John',
-		email: 'john@digifact',
-		plan: 'pro'
-	};
-	const userStr = JSON.stringify(userjson);
 
 	const radioProps = [
 		{label: 'Nit  ', value: false },
