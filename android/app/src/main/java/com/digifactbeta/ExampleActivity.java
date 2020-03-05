@@ -24,12 +24,18 @@ import com.kinpos.printer.ALINEAMIENTO;
 import com.kinpos.printer.OperationResult;
 import com.kinpos.printer.TAMANIO_LETRA;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class ExampleActivity extends ReactActivity {
 
 
     private EditText prueba;
+    private EditText prueba2;
+    private EditText prueba3;
+    private EditText autorizacion;
 
 
     @Override
@@ -224,11 +230,69 @@ public class ExampleActivity extends ReactActivity {
 
 
     void handleSendText(Intent intent) {
-        String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
-        if (sharedText != null) {
+        //String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+        String jsonstringdoc = intent.getStringExtra("jsondatadocumento");
+        String jsonstringusuario = intent.getStringExtra("jsondatausuario");
+        String jsonstringitems = intent.getStringExtra("jsondataitems");
+        //if (sharedText != null) {
+        if (jsonstringdoc != null) {
+
+
             prueba = findViewById(R.id.editText);
-            prueba.setText(sharedText);
-            // Update UI to reflect text being shared
+            prueba2 = findViewById(R.id.editText2);
+            prueba3 = findViewById(R.id.editText3);
+
+            //prueba.setText(sharedText);
+            prueba.setText(jsonstringdoc);
+            prueba2.setText(jsonstringusuario);
+            prueba3.setText(jsonstringitems);
+            autorizacion = findViewById(R.id.editTextAuth);
+
+            // Remove brackets from
+
+
+            String jsonstring = jsonstringdoc.replace("[","").replace("]","");
+            String jsonuserstring = jsonstringusuario.replace("[","").replace("]","");
+            String jsonitemsstring = jsonstringitems.replace("[","").replace("]","");
+            //String jsonstring = sharedText.replace("[","").replace("]","");
+            //String newjsonstring = jsonstring.replace("]","");
+
+            try {
+                //JSONObject jsonDataDoc = new JSONObject(newjsonstring);
+                JSONObject jsonDataDoc = new JSONObject(jsonstring);
+                JSONObject jsonDataUser = new JSONObject(jsonuserstring);
+                String numeroAutorizacion = jsonDataDoc.getString("auth_number");
+                //String numeroDocumento = jsonDataDoc.getString("number");
+                //String numeroSerie = jsonDataDoc.getString("serie");
+                //String numeroTotal = jsonDataDoc.getString("amount");
+                //String fechaEmision = jsonDataDoc.getString("date");
+                //String nitCliente = jsonDataDoc.getString("receiver_nit");
+                //String statusDocumento = jsonDataDoc.getString("status");
+                //String nombreCliente = jsonDataDoc.getString("receiver_name");
+
+                String emailEmisor = jsonDataUser.getString("email");
+                String nombreEmisor = jsonDataUser.getString("name");
+                String nitEmisor = jsonDataUser.getString("nit");
+                String documentoIdEmisor = jsonDataUser.getString("document_id");
+                String nombreContactoEmisor = jsonDataUser.getString("contact_name");
+                String telefonoEmisor = jsonDataUser.getString("phone");
+                String caertificadoEmisor = jsonDataUser.getString("certificate");
+
+
+
+
+
+
+
+
+
+                autorizacion.setText(numeroAutorizacion);
+            }
+            catch (JSONException err){
+                Log.d("Error", err.toString());
+                autorizacion.setText("Error Obteniendo Datos de Factura");
+            }
+
         }
     }
 

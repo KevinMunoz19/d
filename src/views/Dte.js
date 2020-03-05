@@ -97,9 +97,6 @@ const Dte = () =>{
 	};
 	const userStr = JSON.stringify(userjson);
 
-
-
-
 	const radioProps = [
 		{label: 'Nit  ', value: false },
 		{label: 'Consumidor Final	', value: true }
@@ -109,8 +106,6 @@ const Dte = () =>{
 		{label:'12%  ',value:12},
 		{label:'Exento',value:0}
 	]
-
-
 
 	useEffect(()=>{
 			var query = `select * from dte where id=(select max(id) from dte)`;
@@ -210,8 +205,6 @@ const Dte = () =>{
 								setLoading(false);
 								Alert.alert(`Ocurrio un error generando el documento, por favor intete luego`);
 							});
-
-
 						}else{
 							setLoading(false);
 							Alert.alert('Verifica los datos!', 'El iva debe ser 0 o 12%.');
@@ -503,7 +496,7 @@ const Dte = () =>{
 					<View>
 						<Button
 							//onPress={onGenerate}
-            	onPress={() => activityStarter.navigateToExample(JSON.stringify(documento))}
+            	onPress={() => activityStarter.navigateToExample(JSON.stringify(documento),JSON.stringify(user),JSON.stringify(products))}
             	title='Start example activity'
           	/>
 					</View>

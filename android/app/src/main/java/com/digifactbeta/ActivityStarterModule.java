@@ -31,12 +31,15 @@ public class ActivityStarterModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    void navigateToExample(@NonNull String datafactura) {
+    void navigateToExample(@NonNull String datafactura,@NonNull String datausuario,@NonNull String dataitems) {
         Activity activity = getCurrentActivity();
         if (activity != null) {
             Intent intent = new Intent(activity, ExampleActivity.class);
             intent.setAction(Intent.ACTION_SEND);
-            intent.putExtra(Intent.EXTRA_TEXT, datafactura);
+            //intent.putExtra(Intent.EXTRA_TEXT, datafactura);
+            intent.putExtra("jsondatadocumento", datafactura);
+            intent.putExtra("jsondatausuario", datausuario);
+            intent.putExtra("jsondataitems", dataitems);
             intent.setType("text/plain");
             activity.startActivity(intent);
 
