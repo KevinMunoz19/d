@@ -3559,6 +3559,10 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
+link@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/link/-/link-0.1.5.tgz#7fc7aa5bd3f6ac5a19c5255a23f4207d6852e92e"
+
 load-json-file@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-2.0.0.tgz#7947e42149af80d696cbf797bcaabcfe1fe29ca8"
@@ -3608,8 +3612,8 @@ lodash.unescape@4.0.1:
   resolved "https://registry.yarnpkg.com/lodash.unescape/-/lodash.unescape-4.0.1.tgz#bf2249886ce514cda112fae9218cdc065211fc9c"
 
 lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.6.1:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
 
 log-symbols@^2.2.0:
   version "2.2.0"
@@ -4739,6 +4743,10 @@ react-native-animatable@^1.3.1:
   resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.3.tgz#a13a4af8258e3bb14d0a9d839917e9bb9274ec8a"
   dependencies:
     prop-types "^15.7.2"
+
+react-native-app-link@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-app-link/-/react-native-app-link-1.0.0.tgz#9de44a4676fd7d2879f26fc0691c48c0a85b4e2a"
 
 react-native-base64@^0.0.2:
   version "0.0.2"
